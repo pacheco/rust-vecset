@@ -1,0 +1,8 @@
+[package]
+name = "vecset"
+version = "0.1.0"
+authors = ["Leandro Pacheco <contact@leandropacheco.com>"]
+
+[dependencies]
+timeit = "0.1"
+rand = "0.3"
