@@ -9,12 +9,12 @@ extern crate timeit;
 extern crate rand;
 
 fn main() {
-    for N in vec![8,16,64,128,512,1024].into_iter() {
-        println!("N = {} ----------------------------------", N);
+    for n in vec![8,16,64,128,512,1024].into_iter() {
+        println!("n = {} ----------------------------------", n);
         print!("insertion order vecset with capacity\n\t");
         timeit!({
-            let mut s = InsOrdVecSet::with_capacity(N);
-            for _ in 0..N {
+            let mut s = InsOrdVecSet::with_capacity(n);
+            for _ in 0..n {
                 let i: usize = rand::random();
                 s.insert(i);
                 s.contains(&i);
@@ -24,7 +24,7 @@ fn main() {
         print!("insertion order vecset\n\t");
         timeit!({
             let mut s = InsOrdVecSet::new();
-            for _ in 0..N {
+            for _ in 0..n {
                 let i: usize = rand::random();
                 s.insert(i);
                 s.contains(&i);
@@ -33,8 +33,8 @@ fn main() {
 
         print!("ordered vecset with capacity\n\t");
         timeit!({
-            let mut s = OrdVecSet::with_capacity(N);
-            for _ in 0..N {
+            let mut s = OrdVecSet::with_capacity(n);
+            for _ in 0..n {
                 let i: usize = rand::random();
                 s.insert(i);
                 s.contains(&i);
@@ -44,7 +44,7 @@ fn main() {
         print!("ordered vecset\n\t");
         timeit!({
             let mut s = OrdVecSet::new();
-            for _ in 0..N {
+            for _ in 0..n {
                 let i: usize = rand::random();
                 s.insert(i);
                 s.contains(&i);
@@ -54,7 +54,7 @@ fn main() {
         print!("hashset\n\t");
         timeit!({
             let mut s = HashSet::new();
-            for _ in 0..N {
+            for _ in 0..n {
                 let i: usize = rand::random();
                 s.insert(i);
                 s.contains(&i);
@@ -64,7 +64,7 @@ fn main() {
         print!("btreeset\n\t");
         timeit!({
             let mut s = BTreeSet::new();
-            for _ in 0..N {
+            for _ in 0..n {
                 let i: usize = rand::random();
                 s.insert(i);
                 s.contains(&i);
