@@ -54,6 +54,15 @@ impl<T: Ord> OrdVecSet<T> {
         }
     }
 
+    pub fn remove(&mut self, elem: &T) -> bool {
+        if let Ok(pos) = self.inner.binary_search(&elem) {
+            self.inner.remove(pos);
+            true
+        } else {
+            false
+        }
+    }
+
     pub fn contains(&mut self, elem: &T) -> bool {
         match self.inner.binary_search(&elem) {
             Ok(_) => true,

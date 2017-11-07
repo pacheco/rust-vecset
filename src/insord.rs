@@ -53,6 +53,15 @@ impl<T: Eq> InsOrdVecSet<T> {
         }
     }
 
+    pub fn remove(&mut self, elem: &T) -> bool {
+        if let Some(pos) = self.inner.iter().position(|it| &it == &elem) {
+            self.inner.remove(pos);
+            true
+        } else {
+            false
+        }
+    }
+
     pub fn contains(&mut self, elem: &T) -> bool {
         if let Some(_) = self.inner.iter().position(|it| it == elem) {
             true
