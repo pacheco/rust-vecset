@@ -1,6 +1,7 @@
 use std;
 
 /// Insertion ordered vec set. Insert as a push and contains as a linear search
+#[derive(Debug)]
 pub struct InsOrdVecSet<T: Eq> {
     inner: Vec<T>,
 }

@@ -1,6 +1,7 @@
 use std;
 
 /// Ordered vec set
+#[derive(Debug)]
 pub struct OrdVecSet<T: Ord> {
     inner: Vec<T>,
 }
