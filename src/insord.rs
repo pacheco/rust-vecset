@@ -41,6 +41,10 @@ impl<T: Eq> InsOrdVecSet<T> {
         &self.inner
     }
 
+    pub fn inner_mut(&self) -> &mut Vec<T> {
+        &mut self.inner
+    }
+
     pub fn into_inner(self) -> Vec<T> {
         self.inner
     }
