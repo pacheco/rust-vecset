@@ -41,7 +41,7 @@ impl<T: Ord> OrdVecSet<T> {
         &self.inner
     }
 
-    pub fn inner_mut(&self) -> &mut Vec<T> {
+    pub fn inner_mut(&mut self) -> &mut Vec<T> {
         &mut self.inner
     }
 
