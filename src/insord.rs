@@ -26,6 +26,10 @@ impl<T: Eq> InsOrdVecSet<T> {
         self.inner.len()
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.inner.is_empty()
+    }
+
     pub fn iter(&self) -> std::slice::Iter<T> {
         self.inner.iter()
     }
