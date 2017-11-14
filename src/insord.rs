@@ -72,7 +72,7 @@ impl<T: Eq> InsOrdVecSet<T> {
         }
     }
 
-    pub fn contains(&mut self, elem: &T) -> bool {
+    pub fn contains(&self, elem: &T) -> bool {
         if let Some(_) = self.inner.iter().position(|it| it == elem) {
             true
         } else {

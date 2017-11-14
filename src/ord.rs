@@ -73,7 +73,7 @@ impl<T: Ord> OrdVecSet<T> {
         }
     }
 
-    pub fn contains(&mut self, elem: &T) -> bool {
+    pub fn contains(&self, elem: &T) -> bool {
         match self.inner.binary_search(&elem) {
             Ok(_) => true,
             Err(_) => false,
