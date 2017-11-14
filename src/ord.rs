@@ -1,4 +1,5 @@
 use std;
+use std::iter::FromIterator;
 
 /// Ordered vec set
 #[derive(Debug)]
@@ -72,6 +73,19 @@ impl<T: Ord> OrdVecSet<T> {
         match self.inner.binary_search(&elem) {
             Ok(_) => true,
             Err(_) => false,
+        }
+    }
+}
+
+
+impl<I: Ord> FromIterator<I> for OrdVecSet<I> {
+    fn from_iter<T>(iter: T) -> Self
+        where T: IntoIterator<Item = I>
+    {
+        let mut inner: Vec<_> = iter.into_iter().collect();
+        inner.sort();
+        OrdVecSet {
+            inner,
         }
     }
 }

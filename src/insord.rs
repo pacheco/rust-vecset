@@ -1,4 +1,5 @@
 use std;
+use std::iter::FromIterator;
 
 /// Insertion ordered vec set. Insert as a push and contains as a linear search
 #[derive(Debug)]
@@ -72,6 +73,16 @@ impl<T: Eq> InsOrdVecSet<T> {
             true
         } else {
             false
+        }
+    }
+}
+
+impl<I: Eq> FromIterator<I> for InsOrdVecSet<I> {
+    fn from_iter<T>(iter: T) -> Self
+        where T: IntoIterator<Item = I>
+    {
+        InsOrdVecSet {
+            inner: iter.into_iter().collect(),
         }
     }
 }
