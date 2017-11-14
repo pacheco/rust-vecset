@@ -2,7 +2,7 @@ use std;
 use std::iter::FromIterator;
 
 /// Insertion ordered vec set. Insert as a push and contains as a linear search
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct InsOrdVecSet<T: Eq> {
     inner: Vec<T>,
 }

@@ -2,7 +2,7 @@ use std;
 use std::iter::FromIterator;
 
 /// Ordered vec set
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct OrdVecSet<T: Ord> {
     inner: Vec<T>,
 }
