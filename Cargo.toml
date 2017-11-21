@@ -6,3 +6,4 @@ authors = ["Leandro Pacheco <contact@leandropacheco.com>"]
 [dependencies]
 timeit = "0.1"
 rand = "0.3"
+fnv = "*"

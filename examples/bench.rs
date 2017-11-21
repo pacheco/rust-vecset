@@ -1,6 +1,8 @@
 use std::collections::HashSet;
 use std::collections::BTreeSet;
 
+extern crate fnv;
+
 extern crate vecset;
 use vecset::*;
 
@@ -53,7 +55,17 @@ fn main() {
 
         print!("hashset\n\t");
         timeit!({
-            let mut s = HashSet::new();
+            let mut s = HashSet::with_capacity(n);
+            for _ in 0..n {
+                let i: usize = rand::random();
+                s.insert(i);
+                s.contains(&i);
+            }
+        });
+
+        print!("fnv hashset\n\t");
+        timeit!({
+            let mut s = fnv::FnvHashSet::with_capacity_and_hasher(n, Default::default());
             for _ in 0..n {
                 let i: usize = rand::random();
                 s.insert(i);
