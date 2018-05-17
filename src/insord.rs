@@ -79,6 +79,18 @@ impl<T: Eq> InsOrdVecSet<T> {
             false
         }
     }
+
+    pub fn is_disjoint(&self, other: &Self) -> bool {
+        if self.is_empty() || other.is_empty() {
+            return true ;
+        }
+        for e in self.inner.iter() {
+            if other.contains(e) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 impl<I: Eq> FromIterator<I> for InsOrdVecSet<I> {
@@ -88,5 +100,55 @@ impl<I: Eq> FromIterator<I> for InsOrdVecSet<I> {
         InsOrdVecSet {
             inner: iter.into_iter().collect(),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use ::InsOrdVecSet;
+
+    #[test]
+    fn is_disjoint() {
+        let a: InsOrdVecSet<_> = [1,2,3,4,5].iter().collect();
+        let b: InsOrdVecSet<_> = [3,4,5,6,7].iter().collect();
+        assert!(!a.is_disjoint(&b));
+
+        let a: InsOrdVecSet<_> = [1,2,3,4,5].iter().collect();
+        let b: InsOrdVecSet<_> = [5].iter().collect();
+        assert!(!a.is_disjoint(&b));
+
+        let a: InsOrdVecSet<_> = [1,2,3,4,5].iter().collect();
+        let b: InsOrdVecSet<_> = [10,6,0].iter().collect();
+        assert!(a.is_disjoint(&b));
+
+        let a: InsOrdVecSet<_> = [1,2,3,4,5].iter().collect();
+        let b: InsOrdVecSet<_> = [].iter().collect();
+        assert!(a.is_disjoint(&b));
+
+        let a: InsOrdVecSet<_> = [].iter().collect();
+        let b: InsOrdVecSet<&usize> = [1].iter().collect();
+        assert!(a.is_disjoint(&b));
+
+        let a: InsOrdVecSet<&()> = [].iter().collect();
+        let b: InsOrdVecSet<&()> = [].iter().collect();
+        assert!(a.is_disjoint(&b));
+    }
+
+    #[test]
+    fn test_insertion_order_vecset() {
+        let mut set = InsOrdVecSet::new();
+        assert!(set.insert(1));
+        assert!(!set.insert(1));
+        assert_eq!(set.len(), 1);
+
+        assert!(set.insert(3));
+        assert!(!set.insert(3));
+        assert_eq!(set.len(), 2);
+
+        assert!(set.insert(2));
+        assert!(!set.insert(2));
+        assert_eq!(set.len(), 3);
+
+        assert_eq!(&set.inner()[..], &[1,3,2]);
     }
 }
