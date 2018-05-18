@@ -4,7 +4,8 @@ use std::iter::FromIterator;
 
 /// Ordered vec set
 #[derive(Debug, Clone)]
-pub struct OrdVecSet<T: Ord> {
+#[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
+pub struct OrdVecSet<T> {
     inner: Vec<T>,
 }
 
