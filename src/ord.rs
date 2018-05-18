@@ -105,7 +105,7 @@ impl<T: Ord> OrdVecSet<T> {
             break;
         }
 
-        return true;
+        true
     }
 }
 
@@ -121,6 +121,16 @@ impl<I: Ord> FromIterator<I> for OrdVecSet<I> {
         }
     }
 }
+
+impl<I> IntoIterator for OrdVecSet<I> {
+    type Item = I;
+    type IntoIter = std::vec::IntoIter<I>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.inner.into_iter()
+    }
+}
+
 
 #[cfg(test)]
 mod tests {

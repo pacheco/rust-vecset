@@ -90,7 +90,7 @@ impl<T: Eq> InsOrdVecSet<T> {
                 return false;
             }
         }
-        return true;
+        true
     }
 }
 
@@ -101,6 +101,15 @@ impl<I: Eq> FromIterator<I> for InsOrdVecSet<I> {
         InsOrdVecSet {
             inner: iter.into_iter().collect(),
         }
+    }
+}
+
+impl<I> IntoIterator for InsOrdVecSet<I> {
+    type Item = I;
+    type IntoIter = std::vec::IntoIter<I>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.inner.into_iter()
     }
 }
 
